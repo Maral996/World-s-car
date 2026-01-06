@@ -75,6 +75,7 @@
         <button class="btn-categoria" onclick="vaiAMarche('auto')">AUTO (TELAIO / OBD)</button>
         <button class="btn-categoria" onclick="vaiAMarche('moto')">MOTO / CICLOMOTORI</button>
         <button class="btn-ibride" onclick="vaiAMarche('ibride')">AUTO IBRIDE (MANUTENZIONE)</button>
+        <button style="background: #e91e63; color: white; border: none;" onclick="vaiAMarche('tagliandi')">PIANI TAGLIANDO</button>
     </div>
 
     <div id="livello-marche" class="nascosto">
@@ -138,6 +139,29 @@
         },
         ibride: {
             "Toyota": [{ modello: "Yaris Hybrid", anni: "2020+", telaio: "Sotto sedile passeggero", eobd: "Presa bianca lato guida", procedura: "Mettere in P, acc. 2 volte, mettere in N, acc. 2 volte..." }]
+        tagliandi: {
+    "Fiat": [
+        { 
+            modello: "Panda 1.2 Fire", 
+            motore: "188A4000",
+            tagliando: "Ogni 20.000 km o 1 anno", 
+            olio: "2.8 Litri 5W40 ACEA C3", 
+            filtri: "Olio: L316, Aria: A1145",
+            note: "Sostituire candele ogni 40.000 km"
+        }
+    ],
+    "Toyota": [
+        {
+            modello: "Yaris 1.5 Hybrid",
+            motore: "M15A-FXE",
+            tagliando: "Ogni 15.000 km o 1 anno",
+            olio: "3.6 Litri 0W-16",
+            filtri: "Olio: T104, Aria: T122",
+            note: "Controllo sistema ibrido obbligatorio"
+        }
+    ]
+},
+
         }
     };
 
@@ -171,15 +195,36 @@
     }
 
     function mostraScheda(index) {
-        let veicolo = database[categoriaCorrente][marcaCorrente][index];
-        nascondiTutti();
-        document.getElementById('livello-scheda').classList.remove('nascosto');
-        let htmlDati = `<h2>${marcaCorrente} ${veicolo.modello}</h2><p><strong>Periodo:</strong> ${veicolo.anni}</p>`;
+    let veicolo = database[categoriaCorrente][marcaCorrente][index];
+    nascondiTutti();
+    document.getElementById('livello-scheda').classList.remove('nascosto');
+    
+    let htmlDati = `<h2>${marcaCorrente} ${veicolo.modello}</h2>`;
+    
+    // SEZIONE TAGLIANDI
+    if(categoriaCorrente === 'tagliandi') {
+        htmlDati += `
+            <span class="etichetta">Codice Motore:</span><span class="info-testo">${veicolo.motore || 'N/D'}</span>
+            <span class="etichetta">Intervallo Manutenzione:</span><span class="info-testo">${veicolo.tagliando}</span>
+            <div class="box-ibrido" style="background: #fff3e0; border-left-color: #ff9800; padding:15px; margin-top:15px;">
+                <span class="etichetta" style="color: #e65100;">Dati Tecnici Olio:</span>
+                <span class="info-testo" style="border:none"><strong>Quantità:</strong> ${veicolo.olio}</span>
+            </div>
+            <span class="etichetta">Filtri / Ricambi:</span><span class="info-testo">${veicolo.filtri}</span>
+            ${veicolo.note ? `<span class="etichetta">Note Officina:</span><span class="info-testo">${veicolo.note}</span>` : ''}
+        `;
+    } 
+    // SEZIONE TELAIO / OBD / IBRIDE
+    else {
+        htmlDati += `<p><strong>Periodo:</strong> ${veicolo.anni}</p>`;
         if(veicolo.telaio) htmlDati += `<span class="etichetta">Posizione Telaio:</span><span class="info-testo">${veicolo.telaio}</span>`;
         if(veicolo.eobd) htmlDati += `<span class="etichetta">Presa EOBD:</span><span class="info-testo">${veicolo.eobd}</span>`;
         if(veicolo.procedura) htmlDati += `<div class="box-ibrido"><span class="etichetta" style="color:#1b5e20">Procedura Manutenzione:</span><span class="info-testo" style="border:none">${veicolo.procedura}</span></div>`;
-        document.getElementById('dati-veicolo').innerHTML = htmlDati;
     }
+    
+    document.getElementById('dati-veicolo').innerHTML = htmlDati;
+}
+
 
     function ricercaVeloce() {
     let campo = document.getElementById('barra-ricerca');
