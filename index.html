@@ -103,21 +103,26 @@
     </div>
 
     <div id="sezione-contatti">
-        <h3 style="color: #1a73e8;">Contattami</h3>
-        <p style="font-size: 14px; color: #555;">Cosa manca?</p>
-        <form action="https://formspree.io/f/mlgdkage"
-method="POST" style="text-align: left;">
-            <label class="etichetta">Nome</label>
-            <input type="text" name="nome" placeholder="Il tuo nome" required style="width:100%; padding:12px; margin-bottom:15px; border-radius:8px; border:1px solid #ccc; box-sizing: border-box;">
-            <label class="etichetta">Email</label>
-            <input type="email" name="_replyto" placeholder="La tua email" required style="width:100%; padding:12px; margin-bottom:15px; border-radius:8px; border:1px solid #ccc; box-sizing: border-box;">
-            <label class="etichetta">Cosa manca?</label>
-            <textarea name="messaggio" placeholder="Cosa altro vorresti trovare in questo sito?
-Ho dimenticato qualche veicolo? Dimmi quale e sarò lieto di aggiungerlo il prima possibile!" required style="width:100%; padding:12px; margin-bottom:15px; border-radius:8px; border:1px solid #ccc; height:80px; box-sizing: border-box; font-family: inherit;"></textarea>
-            <button type="submit" style="background:#333; color:white; padding:15px; border:none; width:100%; border-radius:10px; cursor:pointer;">INVIA RICHIESTA</button>
-            <p style="font-size: 10px; color: #888; margin-top: 10px; text-align: center;">Inviando accetti che i dati siano usati solo per risponderti. No spam.</p>
-        </form>
-    </div>
+    <h3 style="color: #1a73e8;">Richiedi un modello</h3>
+    <p style="font-size: 14px; color: #555;">Non trovi una procedura? Scrivimi e la aggiungerò.</p>
+    <form action="https://formspree.io/f/tuocodice" method="POST" style="text-align: left;">
+        <label class="etichetta">Nome</label>
+        <input type="text" name="nome" placeholder="Il tuo nome" required style="width:100%; padding:12px; margin-bottom:15px; border-radius:8px; border:1px solid #ccc; box-sizing: border-box;">
+        
+        <label class="etichetta">Email</label>
+        <input type="email" name="_replyto" placeholder="La tua email" required style="width:100%; padding:12px; margin-bottom:15px; border-radius:8px; border:1px solid #ccc; box-sizing: border-box;">
+        
+        <label class="etichetta">Cosa manca?</label>
+        <textarea name="messaggio" placeholder="Modello, anno e info mancante..." required style="width:100%; padding:12px; margin-bottom:15px; border-radius:8px; border:1px solid #ccc; height:80px; box-sizing: border-box; font-family: inherit;"></textarea>
+        
+        <button type="submit" style="background:#333; color:white; padding:15px; border:none; width:100%; border-radius:10px; cursor:pointer;">INVIA RICHIESTA</button>
+        
+        <p style="font-size: 10px; color: #888; margin-top: 10px; text-align: center;">
+            Inviando accetti che i tuoi dati vengano usati per risponderti. Per gestire i tuoi dati scrivi a: <strong>tua-email-corretta@gmail.com</strong>.
+        </p>
+    </form>
+</div>
+
 </div>
 
 <script>
@@ -177,26 +182,42 @@ Ho dimenticato qualche veicolo? Dimmi quale e sarò lieto di aggiungerlo il prim
     }
 
     function ricercaVeloce() {
-        let input = document.getElementById('barra-ricerca').value.toLowerCase();
-        if (input.length > 3) { history.replaceState(null, "", "?q=" + input); }
-        if (input.length < 2) { vaiAllaHome(); return; }
+    let campo = document.getElementById('barra-ricerca');
+    let input = campo.value.toLowerCase();
+    
+    // Tracciamento Google (solo se scrivi più di 3 caratteri)
+    if (input.length > 3) { 
+        history.replaceState(null, "", "?q=" + encodeURIComponent(input)); 
+    }
+
+    if (input.length < 2) { 
+        // Se cancelli tutto, torna alla Home senza nascondere la barra
         nascondiTutti();
-        document.getElementById('risultati-ricerca').classList.remove('nascosto');
-        document.getElementById('risultati-ricerca').innerHTML = "";
-        for (let cat in database) {
-            for (let marca in database[cat]) {
-                database[cat][marca].forEach((v, i) => {
-                    if ((marca + " " + v.modello).toLowerCase().includes(input)) {
-                        let d = document.createElement('div');
-                        d.className = 'scheda-risultato';
-                        d.innerHTML = `<strong>${marca} ${v.modello}</strong> <br> <small>${cat.toUpperCase()}</small>`;
-                        d.onclick = () => { categoriaCorrente = cat; marcaCorrente = marca; mostraScheda(i); };
-                        document.getElementById('risultati-ricerca').appendChild(d);
-                    }
-                });
-            }
+        document.getElementById('livello-categoria').classList.remove('nascosto');
+        document.getElementById('sezione-contatti').classList.remove('nascosto');
+        return; 
+    }
+
+    nascondiTutti();
+    let risultatiDiv = document.getElementById('risultati-ricerca');
+    risultatiDiv.classList.remove('nascosto');
+    risultatiDiv.innerHTML = "";
+
+    for (let cat in database) {
+        for (let marca in database[cat]) {
+            database[cat][marca].forEach((v, i) => {
+                if ((marca + " " + v.modello).toLowerCase().includes(input)) {
+                    let d = document.createElement('div');
+                    d.className = 'scheda-risultato';
+                    d.innerHTML = `<strong>${marca} ${v.modello}</strong> <br> <small>${cat.toUpperCase()}</small>`;
+                    d.onclick = () => { categoriaCorrente = cat; marcaCorrente = marca; mostraScheda(i); };
+                    risultatiDiv.appendChild(d);
+                }
+            });
         }
     }
+}
+
 
     function nascondiTutti() {
         ['livello-categoria', 'livello-marche', 'livello-modelli', 'livello-scheda', 'risultati-ricerca', 'sezione-contatti'].forEach(id => {
