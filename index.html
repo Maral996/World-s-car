@@ -140,6 +140,36 @@
     background-color: #1a73e8;
     border-radius: 10px;
 }
+/* 1. Rendi i riquadri pronti allo scorrimento */
+.info-testo, .box-ibrido { 
+    overflow-y: scroll !important; /* Forza la presenza dello scorrimento */
+    -webkit-overflow-scrolling: touch; /* Rende lo scorrimento fluido su iPhone */
+}
+
+/* 2. Forza la barra blu (Sia per PC che per Mobile) */
+.info-testo::-webkit-scrollbar, 
+.box-ibrido::-webkit-scrollbar {
+    width: 8px !important; /* Leggermente più larga per vederla meglio */
+    display: block !important;
+}
+
+.info-testo::-webkit-scrollbar-track, 
+.box-ibrido::-webkit-scrollbar-track {
+    background: #f1f1f1 !important;
+    border-radius: 10px;
+}
+
+.info-testo::-webkit-scrollbar-thumb {
+    background-color: #1a73e8 !important; /* Blu per i dati tecnici */
+    border-radius: 10px;
+    border: 2px solid #f1f1f1; /* Crea un distacco dal bordo */
+}
+
+.box-ibrido::-webkit-scrollbar-thumb {
+    background-color: #28a745 !important; /* Verde per le procedure ibride */
+    border-radius: 10px;
+    border: 2px solid #e8f5e9;
+}
 
 
 }
