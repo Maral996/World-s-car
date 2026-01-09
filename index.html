@@ -151,12 +151,12 @@
         }
 
         .info-testo {
-            max-height: auto;
+            height: auto;
             background: #fdfdfd;
         }
 
         .box-ibrido {
-            max-height: auto;
+            height: auto;
             background: #e8f5e9;
             border-left: 4px solid #28a745;
         }
@@ -339,7 +339,12 @@
             let veicolo = database[categoriaCorrente][marcaCorrente][index];
             let htmlDati = `<h2>${marcaCorrente} ${veicolo.modello}</h2>`;
             if (categoriaCorrente === 'tagliandi') {
-                htmlDati += `<span class="etichetta">Motore:</span><span class="info-testo">${veicolo.motore}</span><span class="etichetta">Intervallo:</span><span class="info-testo">${veicolo.tagliando}</span><div class="box-ibrido" style="background:#fff3e0; border-left-color:#ff9800"><span class="etichetta" style="color:#e65100">Olio:</span><span class="info-testo" style="border:none">${veicolo.olio}</span></div><span class="etichetta">Filtri:</span><span class="info-testo">${veicolo.filtri}</span>`;
+                htmlDati += `<span class="etichetta"> Codice Motore:</span><div class="info-testo">${veicolo.motore}</div> 
+                <span><div class="etichetta">Intervallo:</span><div class="info-testo">${veicolo.tagliando}</div>
+                <div class="box-ibrido" style="background:#fff3e0; border-left-color:#ff9800">
+                <span class="etichetta" style="color:#e65100">Olio:</span><div style="padding:10px; font-weight:bold; ">${veicolo.olio}</div>
+                <span class="etichetta">Filtri:</span><div class="info-testo">${veicolo.filtri}</div>
+                `;
             } else {
                 htmlDati += `<p><strong>Anni:</strong> ${veicolo.anni || 'N/D'}</p>`;
                 if (veicolo.telaio) htmlDati += `<span class="etichetta">Telaio:</span><div class="info-testo">${veicolo.telaio}</div>`;
