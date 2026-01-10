@@ -269,32 +269,68 @@
     <script>
         const database = {
             auto: {
-                "Fiat": [
-                    { modello: "Panda 3 serie", anni: "2012-oggi", telaio: "Aprire il bagagliaio, alzare il tappetino, si trova sulla destra fuori dal vano ruota di scorta. Può capitare di trovare una copertura in in polistirolo, va alzata anche quella.", eobd: "A sinistra dello sterzo c'è uno sportellino ad incastro, tirare dalla parte bassa. La presa si trova accanto ai fusibili" },
-                    { modello: "Panda 2 serie", anni: "2003-2013", telaio: "Aprire il bagagliaio, alzare il tappetino, si trova sulla destra fuori dal vano ruota di scorta", eobd: "A sinistra dello sterzo c'è uno sportellino, vanno svitate le viti a croce, si trova a sinistra dei fusibili proprio subito dietro lo sportellino" },
-                    { modello: "Panda 1 serie", anni: "1980-2003", telaio: "Aprire il cofano motore, si trova sopra all'ammortizzatore lato passeggero", eobd: "Non presente in questo veicolo" },
-                    { modello: "Punto 3 serie", anni: "2007-2010", telaio: "Pianale lato passeggero, alzare il tappetino si trova uno sportellino vicino al battitacco, aprire lo sportellino ed è li sotto", eobd: "Sulla sinistra dello sterzo c'è una plastica con dei pulsanti con un piccolo cassettino portaoggetti, aprire quest'ultimo poi infilando la mano tirare dalla parte superiore la plastica che si sgancia, rimane attaccato tramite la parte inferiore della plastica. La presa si trova direttamente li davanti, ha una copertura nera" },
-                    { modello: "Punto 2 serie", anni: "2003-2007", telaio: "Pianale lato passeggero, alzare il tappetino si trova uno sportellino vicino al battitacco, aprire lo sportellino ed è li sotto", eobd: "Sulla sinistra dello sterzo c'è una plastica con due viti a taglio di plastica, le sviti e levi lo sportellino davanti. La presa EOBD la trovi li dentro" }
-                ],
-                "Opel": [{ modello: "Astra J", anni: "2009-2015", telaio: "Pianale lato passeggero, alzare il tappetino si trova uno sportellino vicino al battitacco, aprire lo sportellino ed è li sotto", eobd: "Sotto lo sterzo, a fine della plastica sulla sinistra lo si vede spuntare da li sotto" }],
-                "Mercedes": [{ modello: "Classe C", anni: "2000-2007", telaio: "Sotto il seggiolino lato passeggero, va spostato tutto indietro. C'è un ritaglio nella moquette che va alzato", eobd: "Sotto cruscotto lato guida, piu o meno nella parte centrale. C'è uno sportellino nero che va aperto e la presa si trova li sotto" }],
-                "Audi": [{ modello: "A4", anni: "2012-2016", telaio: "Sgocciolatoio sx sotto protezione VIN", eobd: "Sotto cruscotto sx (fucsia)" }],
-                "Porsche": [{ modello: "Cayman, Boxster, 981", anni: "2015", telaio: "Sotto il seggiolino lato passeggero, va spostato tutto indietro e lo si trova li sotto in un ritaglio della moquette che va alzato", eobd: "Ai piedi del guidatore sulla sinistra c'è uno sportellino, tirare dal ritaglio in alto. ci sono i fusibili e in basso troveremo la presa EOBD" }],
-                "Jeep": [{ modello: "Grand Cherokee terza generazione WK-WH", anni: "2004-2010", telaio: "Aprire lo sportello lato passeggero, alzare la plastica nel battitacco vicino alla guarnizione dello sportello, il telaio si trova sulla sinistra. Ci si deve sporgere un pochino dentro la macchina per vederlo meglio, altrimenti rimane sotto il battitacco", eobd: "Sotto il cruscotto lato guida, lo si trova non appena finisce la plastica" }],
-                "Toyota": [{ modello: "Yaris Hybrid", anni: "2020-oggi", telaio: "Sotto sedile passeggero, va spostato il seggiolino tutto indietro e alzato il ritaglio nella moquette", eobd: "Si trova sotto il cruscotto sotto il volante, la si nota bene poiché è di colore bianca" }]
+                "Fiat": {
+                    "Panda": [
+                        { versione: "3 serie (2012-oggi)", telaio: "Aprire il bagagliaio, alzare il tappetino, si trova sulla destra fuori dal vano ruota di scorta.", eobd: "A sinistra dello sterzo c'è uno sportellino ad incastro." },
+                        { versione: "2 serie (2003-2013)", telaio: "Aprire il bagagliaio, alzare il tappetino, si trova sulla destra fuori dal vano ruota di scorta", eobd: "A sinistra dello sterzo c'è uno sportellino, vanno svitate le viti a croce." },
+                        { versione: "1 serie (1980-2003)", telaio: "Aprire il cofano motore, si trova sopra all'ammortizzatore lato passeggero", eobd: "Non presente in questo veicolo" }
+                    ],
+                    "Punto": [
+                        { versione: "3 serie (2007-2010)", telaio: "Pianale lato passeggero, alzare il tappetino.", eobd: "Sulla sinistra dello sterzo c'è una plastica con dei pulsanti." },
+                        { versione: "2 serie (2003-2007)", telaio: "Pianale lato passeggero, alzare il tappetino.", eobd: "Sulla sinistra dello sterzo c'è una plastica con due viti a taglio." }
+                    ]
+                },
+                "Opel": {
+                    "Astra": [
+                        { versione: "Astra J (2009-2015)", telaio: "Pianale lato passeggero, alzare il tappetino.", eobd: "Sotto lo sterzo, a fine della plastica sulla sinistra." }
+                    ]
+                },
+                "Mercedes": {
+                    "Classe C": [
+                        { versione: "Serie W203 (2000-2007)", telaio: "Sotto il seggiolino lato passeggero.", eobd: "Sotto cruscotto lato guida, sportellino nero." }
+                    ]
+                },
+                "Audi": {
+                    "A4": [
+                        { versione: "Serie B8 (2012-2016)", telaio: "Sgocciolatoio sx sotto protezione VIN", eobd: "Sotto cruscotto sx (fucsia)" }
+                    ]
+                },
+                "Porsche": {
+                    "Cayman/Boxster": [
+                        { versione: "981 (2015)", telaio: "Sotto il seggiolino lato passeggero.", eobd: "Ai piedi del guidatore sulla sinistra." }
+                    ]
+                },
+                "Jeep": {
+                    "Grand Cherokee": [
+                        { versione: "3 Gen WK-WH (2004-2010)", telaio: "Alzare la plastica nel battitacco passeggero.", eobd: "Sotto il cruscotto lato guida." }
+                    ]
+                },
+                "Toyota": {
+                    "Yaris": [
+                        { versione: "Hybrid (2020-oggi)", telaio: "Sotto sedile passeggero.", eobd: "Sotto il cruscotto sotto il volante, colore bianca." }
+                    ]
+                }
             },
-            moto: { "Ducati": [{ modello: "Monster", anni: "Tutte", telaio: "Cannotto sterzo", eobd: "Sotto sella" }] },
+            moto: { 
+                "Ducati": {
+                    "Monster": [{ versione: "Tutte le serie", telaio: "Cannotto sterzo", eobd: "Sotto sella" }]
+                }
+            },
             ibride: { 
-                "Toyota": [{ 
-                    modello: "Yaris Hybrid", 
-                    anni: "2020-oggi", 
-                    procedura: "Macchina spenta, accendere il quadro con il cambio in P (NON premere il freno sennò va in ready e non parte il motore a scoppio), premere due volte il pedale dell'acceleratore fino in fondo, mettere il cambio in N premere due volte il pedale dell'acceleratore fino in fondo, mettere di nuovo il cambio in P e premere due volte il pedale dell'acceleratore fino in fondo, a questo punto nel display esce fuori la scritta 'Maintenance mode'. Puoi accendere la vettura. Per uscire basta spegnere e riaccendere." 
-                }] 
+                "Toyota": {
+                    "Yaris": [
+                        { versione: "Hybrid (2020-oggi)", procedura: "Macchina spenta, cambio in P, quadro acceso. 2 acceleratore in P, 2 acceleratore in N, 2 acceleratore in P. Appare 'Maintenance mode'." }
+                    ]
+                }
             },
-            tagliandi: { "Fiat": [{ modello: "Panda 1.2 Fire", motore: "188A4000", tagliando: "20.000km/1anno", olio: "2.8L 5W40 ACEA C3", filtri: "Olio: L316", note: "" }] }
+            tagliandi: { 
+                "Fiat": {
+                    "Panda": [{ versione: "1.2 Fire", motore: "188A4000", tagliando: "20.000km/1anno", olio: "2.8L 5W40 ACEA C3", filtri: "Olio: L316" }]
+                }
+            }
         };
 
-        let categoriaCorrente = "", marcaCorrente = "", livelloAttuale = "categoria", ultimoLivelloPrimaDellaRicerca = "categoria";
+        let categoriaCorrente = "", marcaCorrente = "", modelloCorrente = "", livelloAttuale = "categoria", ultimoLivelloPrimaDellaRicerca = "categoria";
 
         function nascondiTutti() {
             ['livello-categoria', 'livello-marche', 'livello-modelli', 'livello-scheda', 'risultati-ricerca', 'sezione-contatti'].forEach(id => {
@@ -329,21 +365,35 @@
             nascondiTutti();
             document.getElementById('livello-modelli').classList.remove('nascosto');
             let container = document.getElementById('lista-modelli');
-            container.innerHTML = "";
-            database[categoriaCorrente][marca].forEach((item, index) => {
-                container.innerHTML += `<button class="main-btn" onclick="mostraScheda(${index})">${item.modello}</button>`;
+            container.innerHTML = `<h3>Scegli modello ${marca}</h3>`;
+            Object.keys(database[categoriaCorrente][marca]).forEach(modello => {
+                container.innerHTML += `<button class="main-btn" onclick="vaiAVersioni('${modello}')">${modello}</button>`;
             });
         }
 
-        function mostraScheda(index, catRicerca, marcaRicerca) {
+        function vaiAVersioni(modello) {
+            modelloCorrente = modello; livelloAttuale = "versioni";
+            nascondiTutti();
+            document.getElementById('livello-modelli').classList.remove('nascosto');
+            let container = document.getElementById('lista-modelli');
+            container.innerHTML = `<h3>Versione per ${modello}</h3>`;
+            database[categoriaCorrente][marcaCorrente][modello].forEach((item, index) => {
+                container.innerHTML += `<button class="main-btn" onclick="mostraScheda(${index})">${item.versione}</button>`;
+            });
+        }
+
+        function mostraScheda(index, catRicerca, marcaRicerca, modRicerca) {
             if (catRicerca) categoriaCorrente = catRicerca;
             if (marcaRicerca) marcaCorrente = marcaRicerca;
+            if (modRicerca) modelloCorrente = modRicerca;
+            
             livelloAttuale = "scheda";
             document.getElementById('btn-indietro-fisso').disabled = false;
             nascondiTutti();
             document.getElementById('livello-scheda').classList.remove('nascosto');
-            let veicolo = database[categoriaCorrente][marcaCorrente][index];
-            let htmlDati = `<h2>${marcaCorrente} ${veicolo.modello}</h2>`;
+            
+            let veicolo = database[categoriaCorrente][marcaCorrente][modelloCorrente][index];
+            let htmlDati = `<h2>${marcaCorrente} ${modelloCorrente}</h2><p style="color:#1a73e8; font-weight:bold;">${veicolo.versione}</p>`;
             
             if (categoriaCorrente === 'tagliandi') {
                 htmlDati += `
@@ -355,7 +405,6 @@
                     <span class="etichetta">Filtri:</span><div class="info-testo">${veicolo.filtri}</div>
                 `;
             } else {
-                htmlDati += `<p><strong>Anni:</strong> ${veicolo.anni || 'N/D'}</p>`;
                 if (veicolo.telaio) htmlDati += `<span class="etichetta">Telaio:</span><div class="info-testo">${veicolo.telaio}</div>`;
                 if (veicolo.eobd) htmlDati += `<span class="etichetta">EOBD:</span><div class="info-testo">${veicolo.eobd}</div>`;
                 if (veicolo.procedura) htmlDati += `<div class="box-ibrido"><span class="etichetta">Manutenzione:</span>${veicolo.procedura}</div>`;
@@ -368,9 +417,10 @@
             if (livelloAttuale === "ricerca") tornaAlLivelloPrecedente();
             else if (livelloAttuale === "marche") vaiAllaHome();
             else if (livelloAttuale === "modelli") vaiAMarche(categoriaCorrente);
+            else if (livelloAttuale === "versioni") vaiAModelli(marcaCorrente);
             else if (livelloAttuale === "scheda") {
                 if (document.getElementById('barra-ricerca').value.length > 0) ricercaVeloce();
-                else vaiAModelli(marcaCorrente);
+                else vaiAVersioni(modelloCorrente);
             }
         }
 
@@ -394,16 +444,18 @@
             let trovati = 0;
             for (let cat in database) {
                 for (let marca in database[cat]) {
-                    database[cat][marca].forEach((v, i) => {
-                        if ((marca + " " + v.modello).toLowerCase().includes(input)) {
-                            trovati++;
-                            let d = document.createElement('div');
-                            d.className = 'scheda-risultato';
-                            d.innerHTML = `<strong>${marca} ${v.modello}</strong><br><small>${cat.toUpperCase()}</small>`;
-                            d.onclick = () => mostraScheda(i, cat, marca);
-                            div.appendChild(d);
-                        }
-                    });
+                    for (let modello in database[cat][marca]) {
+                        database[cat][marca][modello].forEach((v, i) => {
+                            if ((marca + " " + modello + " " + v.versione).toLowerCase().includes(input)) {
+                                trovati++;
+                                let d = document.createElement('div');
+                                d.className = 'scheda-risultato';
+                                d.innerHTML = `<strong>${marca} ${modello}</strong><br><small>${v.versione} (${cat.toUpperCase()})</small>`;
+                                d.onclick = () => mostraScheda(i, cat, marca, modello);
+                                div.appendChild(d);
+                            }
+                        });
+                    }
                 }
             }
             if (trovati === 0) div.innerHTML = "<p style='padding:20px; text-align:center;'>Nessun veicolo trovato.</p>";
